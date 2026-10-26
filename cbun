@@ -1,0 +1,36 @@
+#!/bin/bash
+if [ ! -d flag ]; then                                                printf '%s\033[31mMissing flags\033[0m\n'
+exit 1
+fi
+rm -f flag/*
+./Cbunfile
+for fl in flag/*; do
+    case "$fl" in *.done|*.no) continue ;; esac
+    [ -e "$fl" ] || continue
+    if [ -f "$fl.done" ]; then
+        while IFS= read -r flag; do
+            [ -z "$flag" ] && continue
+            printf '%s\033[32m ... YES\033[0m\n' "$flag"
+        done < "$fl"
+        continue
+    fi
+    if [ -f "$fl.no" ]; then
+        while IFS= read -r flag; do
+            [ -z "$flag" ] && continue
+            printf '%s\033[31m ... NO\033[0m\n' "$flag"
+        done < "$fl"
+        continue
+    fi
+    while IFS= read -r flag; do
+        [ -z "$flag" ] && continue
+        if [ ! -e "$flag" ]; then
+            printf '%s\033[31m ... NO\033[0m\n' "$flag"
+            touch "$fl.no"
+            exit 1
+        else
+            printf '%s\033[32m ... YES\033[0m\n' "$flag"
+        fi
+    done < "$fl"
+    touch "$fl.done"
+done
+./main
