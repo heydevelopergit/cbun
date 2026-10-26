@@ -8,8 +8,8 @@ read
 sudo mkdir /var/lib/cbun
 git clone https://github.com/heydevelopergit/cbun.git
 cd cbun
-cp cbun /usr/bin/cbun
-cp api /var/lib/cbun/api
+cp cbun /usr/bin/
+cp api /var/lib/cbun/
 chmod +x /var/lib/cbun/api
 chmod +x /usr/bin/cbun
 cd ..
@@ -19,4 +19,4 @@ echo "Run with 'cbun' and api here: '/var/lib/cbun/api'"
 echo "done"
 exit 0
 
-# CBun 1.0
+# CBun 1.1
