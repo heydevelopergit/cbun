@@ -42,7 +42,7 @@ git clone https://github.com/heydevelopergit/cbun.git
 cd cbun
 cp cbun ~/.cbun/bin/
 cp api ~/.cbun/
-chmod +x ~/.cbun/
+chmod +x ~/.cbun/*
 cd ..
 rm -rf cbun
 echo "Cinnamon Bun is installed!"
